@@ -53,6 +53,7 @@ app.get('/protected_page', checkSignIn, function(req, res){
 });
 
 app.get('/login', function(req, res){
+  console.log(req.session);
   res.render('login');
 }); 
 
@@ -61,7 +62,11 @@ app.post('/login', function(req, res){
   if(!req.body.email || !req.body.psw || !req.body.userType){
      res.render('login', {message: "Please make sure there aren't any missing fields"});
   } else {
-     db.query('SELECT * FROM `'+res.body.type+"`WHERE email='"+res.body.email+"' and password='"+res.body.psw+"'"); 
+     db.query("SELECT * FROM `"+res.body.type+"`WHERE email='"+res.body.email+"' and password='"+res.body.psw+"'",function(error,result){
+     if(result.length ==1){
+
+     }  
+     }); 
     
      res.render('login', {message: "Invalid credentials!"});
   }
