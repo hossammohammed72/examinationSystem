@@ -1,0 +1,59 @@
+extends layout
+
+block content
+  form(action='register',id='register' , method='post')
+      .container
+        h1 Register
+        h2(style='background-color:red;') !{errmsg}
+        hr
+        label(for='name')
+          b name
+        input(type='text', placeholder='Enter name',id='name', name='name', required='')
+        label(for='email')
+          b Email
+        input(type='text', placeholder='Enter Email',id='email', name='email', required='')
+        label(for='ssn')
+          b SSN
+        input(type='text', placeholder='enter the 14 digit ssn numbe',id='ssn', name='ssn', required='')
+        label(for='psw')
+          b Password
+        input(type='password', placeholder='Enter Password',id='psw', name='psw', required='')
+        label(for='psw')
+          b Confrim Password
+        input(type='password', placeholder='Enter Password', id='psw-repeat',name='psw-repeat', required='')
+  button.registerbtn(onclick='validate()') Login 
+  a(href='login') have an acoount?login
+      .container
+  script.
+    function validate(){
+    var name = document.getElementById('name');
+    var email = document.getElementById('email');    
+    var ssn = document.getElementById('ssn');
+    var password = document.getElementById('psw');
+    var passwordRepeat = document.getElementById('psw-repeat');
+   
+    if(name.value != '');
+    else {alert('please enter your name');return ;}
+    if(validateEmail(email.value));
+    else{ alert('please enter email properly');return ;}
+    if(!isNaN(ssn.value) && ssn.value.length == 14 );
+    else{
+    alert('SSN must be 14-digit number');
+    return ;  
+    }
+     if(password.value == passwordRepeat.value && password.value != '');
+    else{
+    alert('password and confirm password field mismatch');
+    return ;
+    }
+    
+    document.getElementById('register').submit();
+    }
+    function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+    }
+
+
+
+
