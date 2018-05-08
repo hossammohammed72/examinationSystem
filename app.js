@@ -6,7 +6,7 @@ var logger = require('morgan');
 var session = require('express-session');
 var register = require('./routes/register.js');
 var app = express();
-var db = require('database.js');
+var db = require('./database.js');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
