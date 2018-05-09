@@ -1,8 +1,46 @@
 doctype html
 html
   head
-    title= title
+    title Testing System
     link(rel='stylesheet', href='/stylesheets/pro1.css')
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', type='text/css', href='/stylesheets/Nav_Side_Style.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css')
   body
+    .dawContainer
+      header.header
+        h1
+          i.fa.fa-bandcamp(aria-hidden='true')
+        |       Testing System
+        i.fa.fa-bars(onclick='toggleNav()')
+      .content
+      main.main(onclick='closeNav()')
+        | Main content area
+      aside.sidebar
+        ul
+          li.menu-item
+            i.fa.fa-home(aria-hidden='true')
+            |  Item 1
+          li.menu-item
+            i.fa.fa-info-circle(aria-hidden='true')
+            |  Item 2
+          li.menu-item
+            i.fa.fa-envelope-o(aria-hidden='true')
+            |  Item 3
+          
+    script.
+      let sideNavOpen = false
+      const toggleNav = () => {
+      if (sideNavOpen === false) {
+      sideNavOpen = true
+      document.querySelector('.sidebar').style.width = "30%"
+      } else {
+      sideNavOpen = false
+      document.querySelector('.sidebar').style.width = "0"
+      }
+      }
+      const closeNav = () => {
+      sideNavOpen = false
+      document.querySelector('.sidebar').style.width = "0"
+      }
+
     block content

@@ -1,0 +1,58 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+.dawContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.dawContainer .header {
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  flex: 0 0 10%;
+  font-size: 1.5em;
+  padding: 20px;
+  background-color: #009688;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dawContainer .header .fa {
+  cursor: pointer;
+}
+.dawContainer .header .fa:hover {
+  color: #004d40;
+}
+.dawContainer .content {
+  position: relative;
+  display: flex;
+  flex: 0 0 90%;
+}
+.dawContainer .content .main {
+  flex: 1;
+  padding: 20px;
+}
+.dawContainer .content .sidebar {
+  opacity: 0.8;
+  color: #fff;
+  height: 100%;
+  width: 0;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: 0.5s;
+}
+.dawContainer .content .sidebar .menu-item {
+  padding: 20px;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+.dawContainer .content .sidebar .menu-item:hover {
+  color: #777;
+}

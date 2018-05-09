@@ -29,16 +29,15 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 function checkSignIn(req, res,next){
-  if(req.session.user){
+  if(req.session.userId){
      next();     //If session exists, proceed to page
   } else {
-     var err = new Error("Not logged in!");
-     console.log(req.session.user);
-     next(err);  //Error, trying to access unauthorized page!
+    res.redirect('/login');
+     console.log(req.session.user);  //Error, trying to access unauthorized page!
   }
 }
 function checkForRegister(req,res,next){
-  if(!req.session.user){
+  if(!req.session.userId){
     next();
   }else{
      req.redirect('/');
@@ -48,8 +47,8 @@ app.get('/register', checkForRegister, function(req, res){
   res.render('register');
 });
 app.post('/register', checkForRegister, register);
-app.get('/protected_page', checkSignIn, function(req, res){
-  res.render('protected_page', {id: req.session.user.id})
+app.get('/', checkSignIn, function(req, res){
+  res.render('index', {id: req.session.userId});
 });
 
 app.get('/login', function(req, res){
@@ -62,13 +61,21 @@ app.post('/login', function(req, res){
   if(!req.body.email || !req.body.psw || !req.body.userType){
      res.render('login', {message: "Please make sure there aren't any missing fields"});
   } else {
-     db.query("SELECT * FROM `"+res.body.type+"`WHERE email='"+res.body.email+"' and password='"+res.body.psw+"'",function(error,result){
-     if(result.length ==1){
-
+    console.log(req.body);
+     db.query("SELECT * FROM `"+req.body.userType+"`WHERE email='"+req.body.email+"' and password='"+req.body.psw+"'",function(error,result){
+     console.log(result);
+      if(result.length ==1){
+      req.session.loggedIn = true; 
+      req.session.userType = req.body.userType ;
+      console.log(result);
+      req.session.userId = result[0].id;
+      res.redirect('/');
+      }else{
+      res.render('login', {message: "Invalid credentials!"});
      }  
      }); 
     
-     res.render('login', {message: "Invalid credentials!"});
+     
   }
 });
 
@@ -86,7 +93,7 @@ console.log(err);
 });
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  if(typeof res.session=='undefined')
+  if(typeof req.session.userId=='undefined')
   res.redirect('/login');
   else {
     res.send('404 not found');

@@ -1,4 +1,4 @@
-extends layout
+extends oldlayout
 
 block content
  form(action='login' method='post')
@@ -17,7 +17,7 @@ block content
     select(name='userType', required='')
       option(disabled='' selected='') choose type
       option(value='employee') Employee
-      option(value='stuff') Professor	 
+      option(value='staff') Professor	 
       option(value='student') Student
     button.registerbtn(type='submit') Login 
     a(href='register') need an account register
