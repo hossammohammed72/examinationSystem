@@ -3,7 +3,7 @@ var router = express.Router();
 var mysql = require('mysql');
 var db = require('../database.js');
 
-/* POST addquestion page. */
+/* GET addquestion page. */
 router.get('/', function (req, res, next) {
 	var coursesQuery = "SELECT id, name from Course";
 	db.query(coursesQuery, function (error, result) {

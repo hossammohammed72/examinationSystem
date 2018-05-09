@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='Design', content='first design')
+    link(rel='stylesheet', type='text/css', href='./stylesheets/addstudent.css')
+  body
+    form( action='addstudent' method='post' )
+      label First name
+      br
+      input(name='fname', type='text')
+      br
+      label Last name
+      br
+      input(name='lname', type='text')
+      br
+      label Email
+      br
+      input(name='email', type='text')
+      br
+      label Password
+      br
+      input(name='password', type='password')
+      br
+      input#b6(name='submit', type='submit', value='Add')
