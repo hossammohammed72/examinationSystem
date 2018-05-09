@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
 var register = require('./routes/register.js');
+var addquestion = require('./routes/addquestion.js');
 var app = express();
 var db = require('./database.js');
 
@@ -78,6 +79,8 @@ app.post('/login', function(req, res){
      
   }
 });
+
+app.use('/addquestion',checkSignIn, addquestion);
 
 app.get('/logout', function(req, res){
   req.session.destroy(function(){
