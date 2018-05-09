@@ -1,0 +1,74 @@
+doctype html
+html
+  head
+    title Add Course
+    link(rel='stylesheet', type='text/css', href='stylesheets/addquestion_style.css')
+  body
+    form(action='addquestion', method='post', accept-charset='utf-8')
+      // filled from the db
+      label(for='selectCourse') Choose course
+      br
+      select(name='coursename' class='selectionField')!=coursename
+      br
+      label(for='selectGrade') Enter grade
+      br
+      input(name='grade' id=selectGrade class='selectionField' type='number' min='0')
+      br
+      label(for='enterQuestion') Enter the question
+      br
+      input(name='question' id='enterQuestion' class='inputField' type='text', placeholder='Enter your question here')
+      br
+      label(for='selectQuestionType') Select question type
+      br
+      select(name='questionType' id='selectQuestionType' class='selectionField' onchange='handleQuestionTypeSelection(this.value)')
+        option(value='3') Complete
+        option(value='1') Multiple choices
+        option(value='2') True or False
+      br
+      #completeDiv
+        input(name='completeAnswer' id='completeQuestionAnswer' class='inputField' type='text' placeholder='Enter the answer here')
+      br
+      #multipleChoicesDiv
+        input(name='firstchoice' id='firstChoice' class='inputField' type='text' placeholder='Enter the first question')
+        br
+        input(name='secondchoice' id='secondChoice' class='inputField' type='text' placeholder='Enter the second question')
+        br
+        input(name='thirdchoice' id='thirdChoice' class='inputField' type='text' placeholder='Enter the third question')
+        br
+        input(name='fourthchoice' id='fourthChoice' class='inputField' type='text' placeholder='Enter the fourth question')
+        br
+        label(for='correctChoiceSelection') Which choice is the correct answer?
+        br
+        select(name='correctchoiceselect' id='correctChoiceSelection' class='selectionField')
+          option(value='1') First
+          option(value='2') Second
+          option(value='3') Third
+          option(value='4') Fourth
+      br
+      #trueOrFalseDiv
+        label(for='trueOrFalseSelection') Select whether this statement is True or False?
+        br
+        select(name='trueorfalseselect' id='trueOrFalseSelection' class='selectionField')
+          option(value='True') True
+          option(value='False') False
+      br
+      input#submit(type='submit', value='Submit')
+  script.
+    function handleQuestionTypeSelection(argument) {
+    var completeDiv = document.getElementById("completeDiv");
+    var multipleChoicesDiv = document.getElementById("multipleChoicesDiv");
+    var trueOrFalseDiv = document.getElementById("trueOrFalseDiv");
+    if (argument == '3') {
+    completeDiv.style.display = "block";
+    multipleChoicesDiv.style.display = "none"
+    trueOrFalseDiv.style.display = "none"
+    } else if (argument == '1') {
+    completeDiv.style.display = "none";
+    multipleChoicesDiv.style.display = "block"
+    trueOrFalseDiv.style.display = "none"
+    } else {
+    completeDiv.style.display = "none";
+    multipleChoicesDiv.style.display = "none"
+    trueOrFalseDiv.style.display = "block"
+    }
+    }
