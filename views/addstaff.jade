@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='Design', content='first design')
+    link(rel='stylesheet', type='text/css', href='stylesheets/addstaff.css')
+  body
+    form(method='POST')
+      #form
+        label First Name
+        br
+        input(name='fname', type='text')
+        br
+        label Last Name
+        br
+        input(name='lname', type='text')
+        br
+        label Email
+        br
+        input(name='email', type='text')
+        br
+        label password
+        br
+        input(name='password', type='password')
+        br
+        label SSN
+        input(name='ssn', type='number')
+        br
+        label Department
+        select(name='department')
+        br
+        input#b6(type='submit', value='Add')
